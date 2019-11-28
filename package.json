@@ -1,0 +1,25 @@
+{
+  "name": "fhmap",
+  "version": "0.0.0",
+  "description": "a map components sdk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/286208466/fhmap.git"
+  },
+  "keywords": [
+    "map",
+    "fhmap",
+    "mapsdk",
+    "mapapi"
+  ],
+  "author": "fuhai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/286208466/fhmap/issues"
+  },
+  "homepage": "https://github.com/286208466/fhmap#readme"
+}
