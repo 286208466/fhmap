@@ -9,12 +9,14 @@ function Map(options = {}) {
  * 初始化
  *
  * */
-Map.prototype.init = function() {
-  var mapId = this.options.mapId || "map";
+Map.prototype._init = function() {
+  var options = this.options || {};
+  var mapId = options.mapId || "map";
   var map;
   if (window.BMap) {
-    map = new bdmap.Map(mapId);
+    map = new bdmap.Map(mapId, options);
     map.centerAndZoom(new bdmap.Point(116.404, 39.915), 11);
+    map.enableScrollWheelZoom();
   } else {
     utils.error("[Map][init][不支持]");
   }
@@ -26,7 +28,7 @@ Map.prototype.init = function() {
  * 销毁
  *
  * */
-Map.prototype.destroy = function() {
+Map.prototype._destroy = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   window["_" + mapId] = null;
@@ -35,7 +37,7 @@ Map.prototype.destroy = function() {
 /**
  * 启用地图拖拽，默认启用
  */
-Map.prototype.enableDragging = function() {
+Map.prototype._enableDragging = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -47,7 +49,7 @@ Map.prototype.enableDragging = function() {
 /**
  * 禁用地图拖拽
  */
-Map.prototype.disableDragging = function() {
+Map.prototype._disableDragging = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -59,7 +61,7 @@ Map.prototype.disableDragging = function() {
 /**
  * 启用滚轮放大缩小，默认禁用
  */
-Map.prototype.enableScrollWheelZoom = function() {
+Map.prototype._enableScrollWheelZoom = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -71,7 +73,7 @@ Map.prototype.enableScrollWheelZoom = function() {
 /**
  * 禁用滚轮放大缩小
  */
-Map.prototype.disableScrollWheelZoom = function() {
+Map.prototype._disableScrollWheelZoom = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -83,7 +85,7 @@ Map.prototype.disableScrollWheelZoom = function() {
 /**
  * 启用双击放大，默认启用
  */
-Map.prototype.enableDoubleClickZoom = function() {
+Map.prototype._enableDoubleClickZoom = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -96,7 +98,7 @@ Map.prototype.enableDoubleClickZoom = function() {
  * 禁用双击放大
  *
  */
-Map.prototype.disableDoubleClickZoom = function() {
+Map.prototype._disableDoubleClickZoom = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -111,7 +113,7 @@ Map.prototype.disableDoubleClickZoom = function() {
  * PgUp、PgDn、Home和End键会使地图平移其1/2的大小。+、-键会使地图放大或缩小一级
  *
  */
-Map.prototype.enableKeyboard = function() {
+Map.prototype._enableKeyboard = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -123,7 +125,7 @@ Map.prototype.enableKeyboard = function() {
 /**
  * 禁用键盘操作
  */
-Map.prototype.disableKeyboard = function() {
+Map.prototype._disableKeyboard = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -135,7 +137,7 @@ Map.prototype.disableKeyboard = function() {
 /**
  * 启用地图惯性拖拽，默认禁用
  */
-Map.prototype.enableInertialDragging = function() {
+Map.prototype._enableInertialDragging = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -147,7 +149,7 @@ Map.prototype.enableInertialDragging = function() {
 /**
  * 禁用地图惯性拖拽
  */
-Map.prototype.disableInertialDragging = function() {
+Map.prototype._disableInertialDragging = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -159,7 +161,7 @@ Map.prototype.disableInertialDragging = function() {
 /**
  * 启用连续缩放效果，默认禁用
  */
-Map.prototype.enableContinuousZoom = function() {
+Map.prototype._enableContinuousZoom = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -171,7 +173,7 @@ Map.prototype.enableContinuousZoom = function() {
 /**
  * 禁用连续缩放效果
  */
-Map.prototype.disableContinuousZoom = function() {
+Map.prototype._disableContinuousZoom = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -183,7 +185,7 @@ Map.prototype.disableContinuousZoom = function() {
 /**
  * 启用双指操作缩放，默认启用
  */
-Map.prototype.enablePinchToZoom = function() {
+Map.prototype._enablePinchToZoom = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -195,7 +197,7 @@ Map.prototype.enablePinchToZoom = function() {
 /**
  * 禁用双指操作缩放
  */
-Map.prototype.disablePinchToZoom = function() {
+Map.prototype._disablePinchToZoom = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -207,7 +209,7 @@ Map.prototype.disablePinchToZoom = function() {
 /**
  * 启用自动适应容器尺寸变化，默认启用
  */
-Map.prototype.enableAutoResize = function() {
+Map.prototype._enableAutoResize = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -219,7 +221,7 @@ Map.prototype.enableAutoResize = function() {
 /**
  * 禁用自动适应容器尺寸变化
  */
-Map.prototype.disableAutoResize = function() {
+Map.prototype._disableAutoResize = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -231,7 +233,7 @@ Map.prototype.disableAutoResize = function() {
 /**
  * 设置地图默认的鼠标指针样式。参数cursor应符合CSS的cursor属性规范
  */
-Map.prototype.setDefaultCursor = function(cursor) {
+Map.prototype._setDefaultCursor = function(cursor) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -243,7 +245,7 @@ Map.prototype.setDefaultCursor = function(cursor) {
 /**
  * 返回地图默认的鼠标指针样式
  */
-Map.prototype.getDefaultCursor = function() {
+Map.prototype._getDefaultCursor = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -255,7 +257,7 @@ Map.prototype.getDefaultCursor = function() {
 /**
  * 设置拖拽地图时的鼠标指针样式。参数cursor应符合CSS的cursor属性规范
  */
-Map.prototype.setDraggingCursor = function(cursor) {
+Map.prototype._setDraggingCursor = function(cursor) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -267,7 +269,7 @@ Map.prototype.setDraggingCursor = function(cursor) {
 /**
  * 返回拖拽地图时的鼠标指针样式
  */
-Map.prototype.getDraggingCursor = function() {
+Map.prototype._getDraggingCursor = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -279,7 +281,7 @@ Map.prototype.getDraggingCursor = function() {
 /**
  * 设置地图允许的最小级别。取值不得小于地图类型所允许的最小级别
  */
-Map.prototype.setMinZoom = function(zoom) {
+Map.prototype._setMinZoom = function(zoom) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -291,7 +293,7 @@ Map.prototype.setMinZoom = function(zoom) {
 /**
  * 设置地图允许的最大级别。取值不得大于地图类型所允许的最大级别
  */
-Map.prototype.setMaxZoom = function(zoom) {
+Map.prototype._setMaxZoom = function(zoom) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -303,7 +305,7 @@ Map.prototype.setMaxZoom = function(zoom) {
 /**
  * 设置地图样式，样式包括地图底图颜色和地图要素是否展示两部分
  */
-Map.prototype.setMapStyle = function() {
+Map.prototype._setMapStyle = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -315,7 +317,7 @@ Map.prototype.setMapStyle = function() {
 /**
  * 设置地图个性化样式V2版本，仅支持现代浏览器（支持Canvas）
  */
-Map.prototype.setMapStyleV2 = function(style) {
+Map.prototype._setMapStyleV2 = function(style) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -327,7 +329,7 @@ Map.prototype.setMapStyleV2 = function(style) {
 /**
  * 将全景实例与Map类进行绑定
  */
-Map.prototype.setPanorama = function(pano) {
+Map.prototype._setPanorama = function(pano) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -339,7 +341,7 @@ Map.prototype.setPanorama = function(pano) {
 /**
  * 返回地图可视区域，以地理坐标表示
  */
-Map.prototype.getBounds = function() {
+Map.prototype._getBounds = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -351,7 +353,7 @@ Map.prototype.getBounds = function() {
 /**
  * 返回地图当前中心点
  */
-Map.prototype.getCenter = function() {
+Map.prototype._getCenter = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -363,7 +365,7 @@ Map.prototype.getCenter = function() {
 /**
  * 返回两点之间的距离，单位是米
  */
-Map.prototype.getDistance = function(start, end) {
+Map.prototype._getDistance = function(start, end) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -375,7 +377,7 @@ Map.prototype.getDistance = function(start, end) {
 /**
  * 返回地图类型
  */
-Map.prototype.getMapType = function() {
+Map.prototype._getMapType = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -387,7 +389,7 @@ Map.prototype.getMapType = function() {
 /**
  * 返回地图视图的大小，以像素表示
  */
-Map.prototype.getSize = function() {
+Map.prototype._getSize = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -400,7 +402,7 @@ Map.prototype.getSize = function() {
  * 根据提供的地理区域或坐标获得最佳的地图视野，返回的对象中包含center和zoom属性，分别表示地图的中心点和级别。
  * 此方法仅返回视野信息，不会将新的中心点和级别做用到当前地图上
  */
-Map.prototype.getViewport = function(view, viewportOptions) {
+Map.prototype._getViewport = function(view, viewportOptions) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -412,7 +414,7 @@ Map.prototype.getViewport = function(view, viewportOptions) {
 /**
  * 返回地图当前缩放级别
  */
-Map.prototype.getZoom = function() {
+Map.prototype._getZoom = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -424,7 +426,7 @@ Map.prototype.getZoom = function() {
 /**
  * 获取与Map类绑定的全景实例
  */
-Map.prototype.getPanorama = function() {
+Map.prototype._getPanorama = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -438,7 +440,7 @@ Map.prototype.getPanorama = function() {
  * 如果center类型为Point时，zoom必须赋值，范围3-19级，若调用高清底图（针对移动端开发）时，zoom可赋值范围为3-18级。
  * 如果center类型为字符串时，比如“北京”，zoom可以忽略，地图将自动根据center适配最佳zoom级别
  */
-Map.prototype.centerAndZoom = function(center, zoom) {
+Map.prototype._centerAndZoom = function(center, zoom) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -451,7 +453,7 @@ Map.prototype.centerAndZoom = function(center, zoom) {
  * 将地图的中心点更改为给定的点。
  * 如果该点在当前的地图视图中已经可见，则会以平滑动画的方式移动到中心点位置。可以通过配置强制移动过程不使用动画效果
  */
-Map.prototype.panTo = function(center, opts) {
+Map.prototype._panTo = function(center, opts) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -464,7 +466,7 @@ Map.prototype.panTo = function(center, opts) {
  * 将地图在水平位置上移动x像素，垂直位置上移动y像素。
  * 如果指定的像素大于可视区域范围或者在配置中指定没有动画效果，则不执行滑动效果
  */
-Map.prototype.panBy = function(x, y, opts) {
+Map.prototype._panBy = function(x, y, opts) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -476,7 +478,7 @@ Map.prototype.panBy = function(x, y, opts) {
 /**
  * 重新设置地图，恢复地图初始化时的中心点和级别
  */
-Map.prototype.reset = function() {
+Map.prototype._reset = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -488,7 +490,7 @@ Map.prototype.reset = function() {
 /**
  * 设置地图中心点。center除了可以为坐标点以外，还支持城市名
  */
-Map.prototype.setCenter = function(center) {
+Map.prototype._setCenter = function(center) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -505,7 +507,7 @@ Map.prototype.setCenter = function(center) {
  *  map.centerAndZoom(new BMap.Point(116.404, 39.915), 18);
  * 注意：初始化的坐标应与您设置的城市对应，否则地图将无法正常显示。
  */
-Map.prototype.setCurrentCity = function(city) {
+Map.prototype._setCurrentCity = function(city) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -517,7 +519,7 @@ Map.prototype.setCurrentCity = function(city) {
 /**
  * 设置地图类型
  */
-Map.prototype.setMapType = function(mapType) {
+Map.prototype._setMapType = function(mapType) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -529,7 +531,7 @@ Map.prototype.setMapType = function(mapType) {
 /**
  * 根据提供的地理区域或坐标设置地图视野，调整后的视野会保证包含提供的地理区域或坐标
  */
-Map.prototype.setViewport = function(view, viewportOptions) {
+Map.prototype._setViewport = function(view, viewportOptions) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -542,7 +544,7 @@ Map.prototype.setViewport = function(view, viewportOptions) {
  * 将视图切换到指定的缩放等级，中心点坐标不变。
  * 注意：当有信息窗口在地图上打开时，地图缩放将保证信息窗口所在的坐标位置不动
  */
-Map.prototype.setZoom = function(zoom) {
+Map.prototype._setZoom = function(zoom) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -555,7 +557,7 @@ Map.prototype.setZoom = function(zoom) {
  * 是否使用高分辨率底图。
  * 仅当mapOptions.enableHighResolution属性为true且设备支持高分辨率时返回true
  */
-Map.prototype.highResolutionEnabled = function() {
+Map.prototype._highResolutionEnabled = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -567,7 +569,7 @@ Map.prototype.highResolutionEnabled = function() {
 /**
  * 放大一级视图
  */
-Map.prototype.zoomIn = function() {
+Map.prototype._zoomIn = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -579,7 +581,7 @@ Map.prototype.zoomIn = function() {
 /**
  * 缩小一级视图
  */
-Map.prototype.zoomOut = function() {
+Map.prototype._zoomOut = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -591,7 +593,7 @@ Map.prototype.zoomOut = function() {
 /**
  * 为地图添加热区
  */
-Map.prototype.addHotspot = function(hotspot) {
+Map.prototype._addHotspot = function(hotspot) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -603,7 +605,7 @@ Map.prototype.addHotspot = function(hotspot) {
 /**
  * 移除某个地图热区
  */
-Map.prototype.removeHotspot = function(hotspot) {
+Map.prototype._removeHotspot = function(hotspot) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -615,7 +617,7 @@ Map.prototype.removeHotspot = function(hotspot) {
 /**
  * 清空地图所有热区
  */
-Map.prototype.clearHotspots = function() {
+Map.prototype._clearHotspots = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -627,7 +629,7 @@ Map.prototype.clearHotspots = function() {
 /**
  * 将控件添加到地图，一个控件实例只能向地图中添加一次
  */
-Map.prototype.addControl = function(control) {
+Map.prototype._addControl = function(control) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -639,7 +641,7 @@ Map.prototype.addControl = function(control) {
 /**
  * 从地图中移除控件。如果控件从未被添加到地图中，则该移除不起任何作用
  */
-Map.prototype.removeControl = function(control) {
+Map.prototype._removeControl = function(control) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -652,7 +654,7 @@ Map.prototype.removeControl = function(control) {
  * 返回地图的容器元素。
  * 当创建用户自定义控件时，需要自行实现Control.initialize()方法，并将控件的容器元素添加到地图上，通过此方法可获得地图容器
  */
-Map.prototype.getContainer = function() {
+Map.prototype._getContainer = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -664,7 +666,7 @@ Map.prototype.getContainer = function() {
 /**
  * 添加右键菜单
  */
-Map.prototype.addContextMenu = function(menu) {
+Map.prototype._addContextMenu = function(menu) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -676,7 +678,7 @@ Map.prototype.addContextMenu = function(menu) {
 /**
  * 移除右键菜单
  */
-Map.prototype.removeContextMenu = function(menu) {
+Map.prototype._removeContextMenu = function(menu) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -688,7 +690,7 @@ Map.prototype.removeContextMenu = function(menu) {
 /**
  * 将覆盖物添加到地图中，一个覆盖物实例只能向地图中添加一次
  */
-Map.prototype.addOverlay = function(overlay) {
+Map.prototype._addOverlay = function(overlay) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -700,7 +702,7 @@ Map.prototype.addOverlay = function(overlay) {
 /**
  * 从地图中移除覆盖物。如果覆盖物从未被添加到地图中，则该移除不起任何作用
  */
-Map.prototype.removeOverlay = function(overlay) {
+Map.prototype._removeOverlay = function(overlay) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -712,7 +714,7 @@ Map.prototype.removeOverlay = function(overlay) {
 /**
  * 清除地图上所有覆盖物
  */
-Map.prototype.clearOverlays = function() {
+Map.prototype._clearOverlays = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -724,7 +726,7 @@ Map.prototype.clearOverlays = function() {
 /**
  * 在地图上打开信息窗口
  */
-Map.prototype.openInfoWindow = function(infoWnd, point) {
+Map.prototype._openInfoWindow = function(infoWnd, point) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -736,7 +738,7 @@ Map.prototype.openInfoWindow = function(infoWnd, point) {
 /**
  * 关闭在地图上打开的信息窗口。在标注上打开的信息窗口也可通过此方法进行关闭
  */
-Map.prototype.closeInfoWindow = function() {
+Map.prototype._closeInfoWindow = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -748,7 +750,7 @@ Map.prototype.closeInfoWindow = function() {
 /**
  * 根据地理坐标获取对应的覆盖物容器的坐标，此方法用于自定义覆盖物
  */
-Map.prototype.pointToOverlayPixel = function(point) {
+Map.prototype._pointToOverlayPixel = function(point) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -760,7 +762,7 @@ Map.prototype.pointToOverlayPixel = function(point) {
 /**
  * 根据覆盖物容器的坐标获取对应的地理坐标
  */
-Map.prototype.overlayPixelToPoint = function(pixel) {
+Map.prototype._overlayPixelToPoint = function(pixel) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -772,7 +774,7 @@ Map.prototype.overlayPixelToPoint = function(pixel) {
 /**
  * 返回地图上处于打开状态的信息窗的实例。当地图没有打开的信息窗口时，此方法返回null
  */
-Map.prototype.getInfoWindow = function() {
+Map.prototype._getInfoWindow = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -784,7 +786,7 @@ Map.prototype.getInfoWindow = function() {
 /**
  * 返回地图上的所有覆盖物
  */
-Map.prototype.getOverlays = function() {
+Map.prototype._getOverlays = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -796,7 +798,7 @@ Map.prototype.getOverlays = function() {
 /**
  * 返回地图覆盖物容器列表
  */
-Map.prototype.getPanes = function() {
+Map.prototype._getPanes = function() {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -808,7 +810,7 @@ Map.prototype.getPanes = function() {
 /**
  * 添加一个自定义地图图层
  */
-Map.prototype.addTileLayer = function(tileLayer) {
+Map.prototype._addTileLayer = function(tileLayer) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -820,7 +822,7 @@ Map.prototype.addTileLayer = function(tileLayer) {
 /**
  * 移除一个自定义地图图层
  */
-Map.prototype.removeTileLayer = function(tileLayer) {
+Map.prototype._removeTileLayer = function(tileLayer) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -832,7 +834,7 @@ Map.prototype.removeTileLayer = function(tileLayer) {
 /**
  * 通过地图类型得到一个地图图层对象
  */
-Map.prototype.getTileLayer = function(mapType) {
+Map.prototype._getTileLayer = function(mapType) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -844,7 +846,7 @@ Map.prototype.getTileLayer = function(mapType) {
 /**
  * 像素坐标转换为经纬度坐标
  */
-Map.prototype.pixelToPoint = function(pixel) {
+Map.prototype._pixelToPoint = function(pixel) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
@@ -856,7 +858,7 @@ Map.prototype.pixelToPoint = function(pixel) {
 /**
  * 经纬度坐标转换为像素坐标
  */
-Map.prototype.pointToPixel = function(point) {
+Map.prototype._pointToPixel = function(point) {
   var options = this.options || {};
   var mapId = options.mapId || "map";
   if (window.BMap) {
