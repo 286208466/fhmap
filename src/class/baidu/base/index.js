@@ -1,6 +1,10 @@
+const Point = window.BMap ? BMap.Point : null;
+const Pixel = window.BMap ? BMap.Pixel : null;
+const Bounds = window.BMap ? BMap.Bounds : null;
+const Size = window.BMap ? BMap.Size : null;
 export default {
-  Point: BMap.Point,
-  Pixel: BMap.Pixel,
-  Bounds: BMap.Bounds,
-  Size: BMap.Size
+  Point: Point,
+  Pixel: Pixel,
+  Bounds: Bounds,
+  Size: Size
 };

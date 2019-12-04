@@ -1,3 +1,4 @@
+const MapType = window.BMap ? BMap.MapType : null;
 export default {
-  MapType: BMap.MapType
+  MapType: MapType
 };

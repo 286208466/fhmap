@@ -61,25 +61,15 @@ import {
 import utils from "../src/utils";
 var map = new Map({
   minZoom: 4,
-  maxZoom: 8
+  maxZoom: 18,
+  enableMapClick: false
 });
 map._init({ success: () => {} });
 
-map._addControl(
-  new MapTypeControl({
-    mapTypes: [BMAP_NORMAL_MAP, BMAP_HYBRID_MAP]
-  })
-);
-// map._setCurrentCity("北京");
-map._enableScrollWheelZoom();
+console.log(map);
 
-setTimeout(function(){
-    map._panTo(new Point(113.262232,23.154345));   //两秒后移动到广州
-}, 2000);
 
-// var point1 = new Point(116.404, 39.915);
-// console.log("point1", point1);
-
-// var myIcon = new BMap.Icon("http://api0.map.bdimg.com/images/marker_red_sprite.png", new BMap.Size(300, 157));
-// var marker2 = new BMap.Marker(point1, { icon: myIcon }); // 创建标注
-// map.addOverlay(marker2);
+var p1 = new Point(100, 100);
+console.log(p1);
+var pixel2 = new Pixel(100, 100);
+alert(p1._equals(pixel2));

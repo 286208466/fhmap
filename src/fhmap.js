@@ -1,9 +1,9 @@
-import Map from "./sdk/map";
+import Map from "./sdk/core/map";
 //
-import Point from "./sdk/point";
-import Pixel from "./sdk/Pixel";
-import Bounds from "./sdk/Bounds";
-import Size from "./sdk/Size";
+import Point from "./sdk/base/point";
+import Pixel from "./sdk/base/Pixel";
+import Bounds from "./sdk/base/Bounds";
+import Size from "./sdk/base/Size";
 //
 import Control from "./sdk/control/Control";
 import NavigationControl from "./sdk/control/NavigationControl";
@@ -30,15 +30,15 @@ import Hotspot from "./sdk/overlay/Hotspot";
 import Symbol from "./sdk/overlay/Symbol";
 import CanvasLayer from "./sdk/overlay/CanvasLayer";
 //
-import ContextMenu from "./sdk/contextMenu/ContextMenu";
-import MenuItem from "./sdk/contextMenu/MenuItem";
+import ContextMenu from "./sdk/contextmenu/ContextMenu";
+import MenuItem from "./sdk/contextmenu/MenuItem";
 //
 import MapType from "./sdk/mapType/MapType";
 //
-import TileLayer from "./sdk/layer/TileLayer";
-import TrafficLayer from "./sdk/layer/TrafficLayer";
-import CustomLayer from "./sdk/layer/CustomLayer";
-import PanoramaCoverageLayer from "./sdk/layer/PanoramaCoverageLayer";
+import TileLayer from "./sdk/mapLayer/TileLayer";
+import TrafficLayer from "./sdk/mapLayer/TrafficLayer";
+import CustomLayer from "./sdk/mapLayer/CustomLayer";
+import PanoramaCoverageLayer from "./sdk/mapLayer/PanoramaCoverageLayer";
 //
 import LocalSearch from "./sdk/service/LocalSearch";
 import TransitRoute from "./sdk/service/TransitRoute";

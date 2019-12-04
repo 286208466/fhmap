@@ -1,4 +1,6 @@
+const ContextMenu = window.BMap ? BMap.ContextMenu : null;
+const MenuItem = window.BMap ? BMap.MenuItem : null;
 export default {
-  ContextMenu: BMap.ContextMenu,
-  MenuItem: BMap.MenuItem
+  ContextMenu: ContextMenu,
+  MenuItem: MenuItem
 };

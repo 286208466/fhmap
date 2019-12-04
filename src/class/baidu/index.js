@@ -20,7 +20,7 @@ import {
   PanoramaCoverageLayer,
   TileLayer,
   TrafficLayer
-} from "./layer";
+} from "./mapLayer";
 //
 import { MapType } from "./mapType";
 //
