@@ -58,6 +58,12 @@ import Panorama from "./sdk/panorama/Panorama";
 import PanoramaService from "./sdk/panorama/PanoramaService";
 import PanoramaLabel from "./sdk/panorama/PanoramaLabel";
 
+//
+import mapTools from "./tools";
+
+//
+import mapApis from "./apis";
+
 import utils from "./utils";
 
 export default {
@@ -119,6 +125,12 @@ export default {
   Panorama,
   PanoramaService,
   PanoramaLabel,
+
+  //
+  mapTools,
+
+  //
+  mapApis,
 
   //
   utils
