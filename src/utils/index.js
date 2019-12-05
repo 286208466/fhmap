@@ -2,6 +2,9 @@ function error(msg) {
   throw new Error(msg);
 }
 
+/**
+ * 获取地图厂商
+ *  */
 function getMapProvider() {
   let type = "";
   if (window.BMap) {

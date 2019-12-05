@@ -58,6 +58,8 @@ import Panorama from "./sdk/panorama/Panorama";
 import PanoramaService from "./sdk/panorama/PanoramaService";
 import PanoramaLabel from "./sdk/panorama/PanoramaLabel";
 
+import utils from "./utils";
+
 export default {
   Map,
   //
@@ -116,5 +118,8 @@ export default {
   //
   Panorama,
   PanoramaService,
-  PanoramaLabel
+  PanoramaLabel,
+
+  //
+  utils
 };
