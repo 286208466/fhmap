@@ -1,5 +1,5 @@
 /*!
- * fhmap v0.0.0 (https://github.com/286208466/fhmap#readme)
+ * fhmap v0.0.5 (https://github.com/286208466/fhmap#readme)
  * Copyright 2019, fuhai
  * MIT license
  */
@@ -261,11 +261,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _PanoramaLabel2 = _interopRequireDefault(_PanoramaLabel);
 
+	var _tools = __webpack_require__(51);
+
+	var _tools2 = _interopRequireDefault(_tools);
+
+	var _apis = __webpack_require__(52);
+
+	var _apis2 = _interopRequireDefault(_apis);
+
 	var _utils = __webpack_require__(2);
 
 	var _utils2 = _interopRequireDefault(_utils);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//
 
 	//
 
@@ -333,8 +343,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  PanoramaLabel: _PanoramaLabel2.default,
 
 	  //
+	  mapTools: _tools2.default,
+
+	  //
+	  mapApis: _apis2.default,
+
+	  //
 	  utils: _utils2.default
 	};
+
+	//
+
 	//
 
 	//
@@ -3293,6 +3312,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.default = PanoramaLabel;
 	module.exports = exports["default"];
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+	"use strict";
 
 /***/ })
 /******/ ])

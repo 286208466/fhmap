@@ -274,11 +274,21 @@
 
 	var _PanoramaLabel2 = _interopRequireDefault(_PanoramaLabel);
 
+	var _tools = __webpack_require__(52);
+
+	var _tools2 = _interopRequireDefault(_tools);
+
+	var _apis = __webpack_require__(53);
+
+	var _apis2 = _interopRequireDefault(_apis);
+
 	var _utils = __webpack_require__(3);
 
 	var _utils2 = _interopRequireDefault(_utils);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//
 
 	//
 
@@ -346,8 +356,17 @@
 	  PanoramaLabel: _PanoramaLabel2.default,
 
 	  //
+	  mapTools: _tools2.default,
+
+	  //
+	  mapApis: _apis2.default,
+
+	  //
 	  utils: _utils2.default
 	};
+
+	//
+
 	//
 
 	//
@@ -3306,6 +3325,18 @@
 
 	exports.default = PanoramaLabel;
 	module.exports = exports["default"];
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports) {
+
+	"use strict";
 
 /***/ })
 /******/ ]);
